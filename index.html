@@ -887,6 +887,38 @@
 =======================================================-->
 	<!--	Js Links
 	===================================================-->
+	<script>
+		document.getElementById("contact-form").addEventListener("submit", function (e) {
+			e.preventDefault();
+
+			let name = document.getElementById("name").value.trim();
+			let email = document.getElementById("email").value.trim();
+			let subject = document.getElementById("subject").value.trim();
+			let message = document.getElementById("message").value.trim();
+
+			if (name === "" || email === "" || subject === "" || message === "") {
+				alert("Please fill all fields");
+				return;
+			}
+
+			let whatsappNumber = "923233985348"; // your WhatsApp number
+
+			let whatsappMessage =
+				`New Contact Message:%0A%0A` +
+				`Name: ${name}%0A` +
+				`Email: ${email}%0A` +
+				`Subject: ${subject}%0A` +
+				`Message: ${message}`;
+
+			let whatsappURL = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+
+			window.open(whatsappURL, "_blank");
+
+			// Reset form
+			document.getElementById("contact-form").reset();
+		});
+
+	</script>
 	<script src="loader.js"></script>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/popper.min.js"></script>
