@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Loader</title>
+    <style>
+        /* ====== LOADER STYLES ====== */
+        #universal-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #1e283c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999999;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+
+        #universal-loader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Container: Mobile par 90% width, PC par max 500px */
+        .loader-content {
+            text-align: center;
+            width: 90%; 
+            max-width: 500px;
+            padding: 0 15px; /* Side padding taake kinare na chuein */
+        }
+
+        .loader-logo {
+            white-space: nowrap; /* Naam ko ek line mein rakhta hai */
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem; /* Desktop size */
+            font-weight: 800;
+            color: #ffb32f;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .loader-progress-container {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .loader-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: #ffb32f;
+            border-radius: 2px;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 10px rgba(255, 179, 47, 0.5);
+        }
+
+        .loader-text {
+            color: white;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            margin-top: 15px;
+            font-family: sans-serif;
+            font-weight: 300;
+            min-height: 30px; 
+            transition: all 0.3s ease;
+        }
+
+        /* ====== RESPONSIVE (MOBILE FIX) ====== */
+        @media (max-width: 768px) {
+            .loader-logo {
+                font-size: 1.6rem; /* Tablet/Mobile par font chota */
+                letter-spacing: 1px;
+            }
+            .loader-text {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .loader-logo {
+                font-size: 1.3rem; /* Chote phone par aur chota */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="universal-loader">
+        <div class="loader-content">
+            <div class="loader-logo">TOHEED HUSSAIN</div>
+            
+            <div class="loader-progress-container">
+                <div class="loader-progress-bar" id="loaderProgressBar"></div>
+            </div>
+            
+            <div class="loader-text" id="loaderText">Initializing digital experience...</div>
+        </div>
+    </div>
+
+    <script>
+        class UniversalLoader {
+            constructor() {
+                this.loader = document.getElementById('universal-loader');
+                this.progressBar = document.getElementById('loaderProgressBar');
+                this.loaderText = document.getElementById('loaderText');
+                this.progress = 0;
+                
+                // Steps Configuration
+                this.steps = [
+                    { percent: 10, text: "Initializing digital experience..." },
+                    { percent: 40, text: "Preparing your visit..." },
+                    { percent: 75, text: "Almost ready..." }
+                ];
+            }
+            
+            init() {
+                this.simulateLoading();
+
+                // Real Load Check
+                window.addEventListener('load', () => {
+                    this.completeLoading();
+                });
+
+                // Safety Timer (5 Seconds)
+                setTimeout(() => {
+                    if (this.progress < 100) this.completeLoading();
+                }, 5000);
+            }
+            
+            simulateLoading() {
+                let currentStepIndex = 0;
+                
+                // Interval
+                this.interval = setInterval(() => {
+                    if (this.progress < 85) {
+                        this.progress += Math.random() * 5; 
+                        this.progressBar.style.width = `${this.progress}%`;
+
+                        // Update Text
+                        if (currentStepIndex < this.steps.length) {
+                            if (this.progress >= this.steps[currentStepIndex].percent) {
+                                this.loaderText.textContent = this.steps[currentStepIndex].text;
+                                currentStepIndex++;
+                            }
+                        }
+                    }
+                }, 400);
+            }
+            
+            completeLoading() {
+                clearInterval(this.interval);
+                
+                // Final Finish
+                this.progressBar.style.width = '100%';
+                this.loaderText.textContent = "Welcome"; 
+                
+                setTimeout(() => {
+                    this.loader.classList.add('fade-out');
+                    setTimeout(() => {
+                        this.loader.style.display = 'none';
+                    }, 800);
+                }, 600);
+            }
+        }
+        
+        // Run Code
+        document.addEventListener('DOMContentLoaded', () => {
+            const loader = new UniversalLoader();
+            loader.init();
+        });
+    </script>
+</body>
+</html>
