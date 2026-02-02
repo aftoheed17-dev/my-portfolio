@@ -1,0 +1,137 @@
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode .bg_white {
+    background-color: #1e1e1e !important;
+}
+
+body.dark-mode .bg_secondery {
+    background-color: #252525 !important;
+}
+
+body.dark-mode .bg_transparent {
+    background-color: transparent !important;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode .color_primary {
+    color: #ffffff !important;
+}
+
+body.dark-mode .color_secondery {
+    color: #b0b0b0 !important;
+}
+
+body.dark-mode .nav-scroll {
+    background: #1e1e1e !important;
+    box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .nav-scroll .navbar-light .navbar-nav .nav-link {
+    color: #ffffff;
+}
+
+body.dark-mode .nav-scroll .navbar-light .navbar-brand {
+    color: #ffffff;
+}
+
+body.dark-mode .form-control {
+    background-color: #2c2c2c;
+    border-color: #444;
+    color: #fff;
+}
+
+body.dark-mode .floating-label {
+    background-color: #1e1e1e;
+    /* Match container bg */
+    color: #aaa;
+}
+
+body.dark-mode .service_two,
+body.dark-mode .member_feedback,
+body.dark-mode .blog_item {
+    background-color: #2c2c2c;
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .contact_info ul li .contact_text .color_secondery {
+    color: #ccc !important;
+}
+
+/* Toggle Button Style */
+.theme-toggle-btn {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 20px;
+    transition: transform 0.3s ease;
+}
+
+.nav-scroll .theme-toggle-btn {
+    color: #1e283c;
+    /* Dark text on white scroll nav default */
+}
+
+body.dark-mode .theme-toggle-btn {
+    color: #ffb32f !important;
+    transform: rotate(180deg);
+}
+
+/* Animations for Contact Section */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 40px, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.contact_info ul li {
+    animation-duration: 0.8s;
+    animation-fill-mode: both;
+    opacity: 0;
+    /* Hidden initially */
+}
+
+.contact_info ul li:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.contact_info ul li:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.contact_info ul li:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.contact_info ul li:nth-child(4) {
+    animation-delay: 0.8s;
+}
+
+.contact_info.animated ul li {
+    animation-name: fadeInUp;
+    opacity: 1;
+}
+
+.contact_text {
+    transition: transform 0.3s ease;
+}
+
+.contact_info ul li:hover .contact_text {
+    transform: translateX(10px);
+}

@@ -779,10 +779,10 @@ ul#menu li a {
 
 .profile_img {
   width: 300px;
-  height: 520px;
+  height: 450px;
   border-radius: 10%;
   overflow: hidden;
-
+  margin-top: 20px;
 
 }
 
@@ -791,7 +791,7 @@ ul#menu li a {
   object-fit: cover 20%;
   transition: transform 0.3s ease;
   cursor: pointer;
-
+  border-radius: 50px;
 }
 
 .myab:hover {
@@ -2583,6 +2583,15 @@ label.radios {
 }
 
 /*
+// Extra extra large devices (large desktops, 1400px and up)
+============================================================*/
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+
+/*
 // Large devices (desktops, 992px and up)
 ============================================================*/
 @media (max-width: 1199px) {
@@ -3434,5 +3443,38 @@ label.radios {
 
   .hover_overlay .border strong {
     font-size: 15px;
+  }
+}
+
+/* 
+// Smallest devices (older phones, 320px and below)
+============================================================*/
+@media (max-width: 320px) {
+  h1 {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  h2 {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .btn {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+
+  .about_myself,
+  .education_experience,
+  .video_content,
+  .services,
+  .portfolio2,
+  .pricing,
+  .team,
+  .testimonial,
+  .contact,
+  .footer_bottom {
+    margin-left: 20px;
   }
 }
